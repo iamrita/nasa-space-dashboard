@@ -1,22 +1,22 @@
-const API_BASE_URL = 'http://localhost:3002'
+import { client, APOD_QUERY, SEARCH_IMAGES_QUERY, NEO_QUERY, HEALTH_QUERY } from './apolloClient'
 
 export async function fetchAPOD() {
-  const response = await fetch(`${API_BASE_URL}/api/apod`)
-  if (!response.ok) throw new Error('Failed to fetch APOD')
-  return response.json()
+  const { data } = await client.query({
+    query: APOD_QUERY,
+    fetchPolicy: 'network-only'
+  })
+  return data.apod
 }
 
 export async function searchNASAImages(query = 'galaxy', mediaType = 'image', page = 1) {
-  const params = new URLSearchParams({
-    q: query,
-    media_type: mediaType,
-    page: page.toString()
+  const { data } = await client.query({
+    query: SEARCH_IMAGES_QUERY,
+    variables: { query, mediaType, page },
+    fetchPolicy: 'network-only'
   })
-  const response = await fetch(`${API_BASE_URL}/api/images/search?${params}`)
-  if (!response.ok) {
-    throw new Error(`Failed to search NASA images (${response.status})`)
-  }
-  return response.json()
+  
+  // Return data directly - the resolver already transforms it
+  return data.searchImages
 }
 
 export async function fetchPopularNASAImages(topic = 'nebula') {
@@ -24,15 +24,32 @@ export async function fetchPopularNASAImages(topic = 'nebula') {
 }
 
 export async function fetchNEOs(startDate = null, endDate = null) {
-  const params = new URLSearchParams()
-  if (startDate) params.set('start_date', startDate)
-  if (endDate) params.set('end_date', endDate)
+  const variables = {}
+  if (startDate) variables.startDate = startDate
+  if (endDate) variables.endDate = endDate
   
-  const url = params.toString() 
-    ? `${API_BASE_URL}/api/neo?${params}` 
-    : `${API_BASE_URL}/api/neo`
+  const { data } = await client.query({
+    query: NEO_QUERY,
+    variables,
+    fetchPolicy: 'network-only'
+  })
   
-  const response = await fetch(url)
-  if (!response.ok) throw new Error('Failed to fetch NEO data')
-  return response.json()
+  // Transform from array format back to object format for backward compatibility with the component
+  const nearEarthObjectsMap = {}
+  data.neo.near_earth_objects.forEach(entry => {
+    nearEarthObjectsMap[entry.date] = entry.objects
+  })
+  
+  return {
+    element_count: data.neo.element_count,
+    near_earth_objects: nearEarthObjectsMap
+  }
+}
+
+export async function fetchHealth() {
+  const { data } = await client.query({
+    query: HEALTH_QUERY,
+    fetchPolicy: 'network-only'
+  })
+  return data.health
 }
