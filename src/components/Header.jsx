@@ -3,10 +3,9 @@ function Header() {
     <header className="header">
       <div className="header-content">
         <div className="logo">
-          <span className="logo-icon">🚀</span>
-          <h1>NASA Space Dashboard</h1>
+          <h1>NASA Space</h1>
         </div>
-        <p className="tagline">Explore the cosmos with real-time NASA data</p>
+        <p className="tagline">Explore the Cosmos</p>
       </div>
     </header>
   )

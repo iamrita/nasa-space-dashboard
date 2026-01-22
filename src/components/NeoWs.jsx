@@ -39,12 +39,12 @@ function NeoWs() {
 
       <div className="neo-summary">
         <div className="summary-card">
-          <span className="summary-icon">☄️</span>
+          <span className="summary-icon">○</span>
           <span className="summary-value">{neoData.element_count}</span>
           <span className="summary-label">Total Objects</span>
         </div>
         <div className="summary-card hazardous">
-          <span className="summary-icon">⚠️</span>
+          <span className="summary-icon">◆</span>
           <span className="summary-value">
             {Object.values(neoData.near_earth_objects)
               .flat()
@@ -74,7 +74,7 @@ function NeoWs() {
                   <div className="neo-header">
                     <h4>{neo.name}</h4>
                     {neo.is_potentially_hazardous_asteroid && (
-                      <span className="hazard-badge">⚠️ Hazardous</span>
+                      <span className="hazard-badge">Hazardous</span>
                     )}
                   </div>
                   
@@ -114,7 +114,7 @@ function NeoWs() {
             
             {selectedNeo.is_potentially_hazardous_asteroid && (
               <div className="hazard-warning">
-                ⚠️ This asteroid is classified as potentially hazardous
+                This asteroid is classified as potentially hazardous
               </div>
             )}
             

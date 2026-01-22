@@ -3,18 +3,18 @@ import { searchNASAImages } from '../api/nasaApi'
 import LoadingSpinner from './LoadingSpinner'
 
 const POPULAR_TOPICS = [
-  { id: 'galaxy', label: 'Galaxies', icon: '🌌' },
-  { id: 'nebula', label: 'Nebulae', icon: '✨' },
-  { id: 'supernova', label: 'Supernovae', icon: '💥' },
-  { id: 'black hole', label: 'Black Holes', icon: '🕳️' },
-  { id: 'jupiter', label: 'Jupiter', icon: '🪐' },
-  { id: 'saturn', label: 'Saturn', icon: '💫' },
-  { id: 'mars', label: 'Mars', icon: '🔴' },
-  { id: 'moon', label: 'Moon', icon: '🌙' },
-  { id: 'earth', label: 'Earth', icon: '🌍' },
-  { id: 'astronaut', label: 'Astronauts', icon: '👨‍🚀' },
-  { id: 'space station', label: 'ISS', icon: '🛰️' },
-  { id: 'rocket launch', label: 'Launches', icon: '🚀' }
+  { id: 'galaxy', label: 'Galaxies' },
+  { id: 'nebula', label: 'Nebulae' },
+  { id: 'supernova', label: 'Supernovae' },
+  { id: 'black hole', label: 'Black Holes' },
+  { id: 'jupiter', label: 'Jupiter' },
+  { id: 'saturn', label: 'Saturn' },
+  { id: 'mars', label: 'Mars' },
+  { id: 'moon', label: 'Moon' },
+  { id: 'earth', label: 'Earth' },
+  { id: 'astronaut', label: 'Astronauts' },
+  { id: 'space station', label: 'ISS' },
+  { id: 'rocket launch', label: 'Launches' }
 ]
 
 function NASAImageLibrary() {
@@ -114,8 +114,7 @@ function NASAImageLibrary() {
             className={`topic-chip ${activeTopic === topic.id ? 'active' : ''}`}
             onClick={() => handleTopicClick(topic.id)}
           >
-            <span className="chip-icon">{topic.icon}</span>
-            <span className="chip-label">{topic.label}</span>
+            {topic.label}
           </button>
         ))}
       </div>

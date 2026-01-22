@@ -8,9 +8,9 @@ function App() {
   const [activeTab, setActiveTab] = useState('apod')
 
   const tabs = [
-    { id: 'apod', label: 'Picture of the Day', icon: '🌌' },
-    { id: 'images', label: 'Image Library', icon: '📷' },
-    { id: 'neo', label: 'Asteroids', icon: '☄️' }
+    { id: 'apod', label: 'Picture of the Day', icon: '◆' },
+    { id: 'images', label: 'Image Library', icon: '◇' },
+    { id: 'neo', label: 'Near Earth Objects', icon: '○' }
   ]
 
   const renderContent = () => {
@@ -28,10 +28,6 @@ function App() {
 
   return (
     <div className="app">
-      <div className="stars"></div>
-      <div className="stars2"></div>
-      <div className="stars3"></div>
-      
       <Header />
       
       <nav className="nav-tabs">
@@ -52,7 +48,7 @@ function App() {
       </main>
 
       <footer className="footer">
-        <p>Data provided by NASA Open APIs</p>
+        <p>Data Provided by NASA Open APIs</p>
       </footer>
     </div>
   )

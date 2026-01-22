@@ -5,9 +5,9 @@ function LoadingSpinner() {
         <div className="spinner-ring"></div>
         <div className="spinner-ring"></div>
         <div className="spinner-ring"></div>
-        <span className="spinner-planet">🪐</span>
+        <span className="spinner-planet">◆</span>
       </div>
-      <p className="loading-text">Loading cosmic data...</p>
+      <p className="loading-text">Loading</p>
     </div>
   )
 }
