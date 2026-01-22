@@ -1,9 +1,9 @@
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+import { ApolloClient, InMemoryCache, gql, HttpLink } from '@apollo/client'
 
 const API_BASE_URL = 'http://localhost:3002'
 
 export const client = new ApolloClient({
-  uri: `${API_BASE_URL}/graphql`,
+  link: new HttpLink({ uri: `${API_BASE_URL}/graphql` }),
   cache: new InMemoryCache()
 })
 
