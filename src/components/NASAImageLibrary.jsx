@@ -51,6 +51,12 @@ function NASAImageLibrary() {
             thumbnail: item.links[0]?.href,
             detailsHref: item.href
           }))
+          // Sort by date from most recent to least recent
+          .sort((a, b) => {
+            const dateA = a.date ? new Date(a.date).getTime() : 0
+            const dateB = b.date ? new Date(b.date).getTime() : 0
+            return dateB - dateA
+          })
           .slice(0, 24)
         
         setImages(imageData)
