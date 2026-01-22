@@ -38,20 +38,8 @@ function NASAImageLibrary() {
         const items = result.collection?.items || []
         setTotalHits(result.collection?.metadata?.total_hits || 0)
         
-        // Extract image data with thumbnails
-        const imageData = items
-          .filter(item => item.links && item.links[0]?.href)
-          .map(item => ({
-            id: item.data[0]?.nasa_id,
-            title: item.data[0]?.title,
-            description: item.data[0]?.description,
-            date: item.data[0]?.date_created,
-            center: item.data[0]?.center,
-            keywords: item.data[0]?.keywords || [],
-            thumbnail: item.links[0]?.href,
-            detailsHref: item.href
-          }))
-          .slice(0, 24)
+        // Data is already transformed by GraphQL resolver
+        const imageData = items.slice(0, 24)
         
         setImages(imageData)
       } catch (err) {
